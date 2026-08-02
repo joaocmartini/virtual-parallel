@@ -1,0 +1,18 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Virtual Parallel",
+        "description": "Configure um circuito virtual.",
+        "data": {
+          "name": "Nome",
+          "entities": "Entidades"
+        }
+      }
+    },
+    "error": {},
+    "abort": {
+      "already_configured": "Já configurado."
+    }
+  }
+}
