@@ -1,79 +1,79 @@
 # Virtual Parallel
 
-Virtual Parallel é uma integração personalizada para o Home Assistant que permite criar circuitos paralelos virtuais entre entidades `switch`.
+Virtual Parallel is a custom Home Assistant integration that allows you to create virtual parallel circuits between `switch` entities.
 
-As entidades adicionadas ao mesmo circuito são sincronizadas automaticamente. Quando uma delas é ligada ou desligada, as demais entidades disponíveis do circuito acompanham o mesmo estado.
+Entities added to the same circuit are automatically synchronized. When one entity is turned on or off, the other available entities in the circuit follow the same state.
 
-## Recursos
+## Features
 
-- Circuitos paralelos virtuais entre entidades `switch`
-- Sincronização bidirecional
-- Qualquer entidade do circuito pode alterar o estado das demais
-- Definição de uma entidade mestre
-- Configuração pela interface do Home Assistant
-- Edição dos circuitos existentes
-- Ignora entidades `unknown` e `unavailable`
-- Evita comandos desnecessários quando o estado já está correto
+- Create virtual parallel circuits between `switch` entities
+- Bidirectional synchronization
+- Any available entity can trigger synchronization
+- Define a master entity for each circuit
+- Configure circuits through the Home Assistant interface
+- Edit existing circuits
+- Ignore `unknown` and `unavailable` entities
+- Avoid unnecessary commands when an entity is already in the desired state
 
-## Como funciona
+## How It Works
 
-Exemplo com três interruptores:
+Suppose you have three switches:
 
-    switch.luz_sala
-    switch.luz_corredor
-    switch.luz_parede
+    switch.living_room_light
+    switch.hallway_light
+    switch.wall_light
 
-Ao criar um circuito com essas entidades, o estado é sincronizado entre elas.
+You can create a circuit containing these entities.
 
-Se uma entidade for ligada:
+When one entity is turned on:
 
-    ON → as demais ficam ON
+    ON → the other available entities are turned ON
 
-Se uma entidade for desligada:
+When one entity is turned off:
 
-    OFF → as demais ficam OFF
+    OFF → the other available entities are turned OFF
 
-A sincronização funciona nos dois sentidos, permitindo que qualquer entidade disponível do circuito seja utilizada para controlar as demais.
+Synchronization works in both directions, allowing any available entity in the circuit to control the others.
 
-## Instalação
+## Installation
 
-A maneira recomendada de instalar o Virtual Parallel é através do HACS.
+The recommended way to install Virtual Parallel is through HACS.
 
-No Home Assistant:
+In Home Assistant:
 
-1. Abra HACS.
-2. Entre em Integrações.
-3. Procure por Virtual Parallel.
-4. Clique em Download.
-5. Reinicie o Home Assistant.
+1. Open HACS.
+2. Go to Integrations.
+3. Search for Virtual Parallel.
+4. Click Download.
+5. Restart Home Assistant.
 
-Depois da instalação, acesse:
+After installation, go to:
 
-Configurações → Dispositivos e serviços → Adicionar integração
+Settings → Devices & services → Add integration
 
-e procure por Virtual Parallel.
+and search for Virtual Parallel.
 
-## Configuração
+## Configuration
 
-Ao adicionar a integração, informe o nome do circuito, selecione as entidades `switch` que participarão dele e escolha a entidade mestre.
+When adding the integration, enter the circuit name, select the `switch` entities that will participate in the circuit, and choose the master entity.
 
-Os circuitos podem ser editados posteriormente para alterar o nome, as entidades participantes ou a entidade mestre.
+Existing circuits can be edited later to change the name, participating entities, or master entity.
 
-## Tratamento de indisponibilidade
+## Availability Handling
 
-Entidades nos estados `unknown` ou `unavailable` são ignoradas durante a sincronização.
+Entities in the `unknown` or `unavailable` state are ignored during synchronization.
 
-Isso evita que uma entidade temporariamente indisponível seja interpretada como desligada e altere o estado das demais.
+This prevents a temporarily unavailable entity from being interpreted as `off` and changing the state of the other entities.
 
-## Requisitos
+## Requirements
 
 - Home Assistant
-- Entidades do domínio `switch`
+- Entities from the `switch` domain
 
-## Versão
+## Version
 
 0.0.3
 
-## Repositório
+## Repository
 
 https://github.com/joaocmartini/virtual-parallel
