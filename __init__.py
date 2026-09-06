@@ -24,6 +24,28 @@ async def async_setup(
     return True
 
 
+async def async_migrate_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+) -> bool:
+    """Migrate an old config entry."""
+
+    if config_entry.version == 2:
+        data = dict(config_entry.data)
+
+        if "master" not in data:
+            entities = data.get("entities", [])
+            data["master"] = entities[0] if entities else None
+
+        hass.config_entries.async_update_entry(
+            config_entry,
+            data=data,
+            version=3,
+        )
+
+    return True
+
+
 async def async_setup_entry(
     hass: HomeAssistant,
     entry: ConfigEntry,
@@ -37,10 +59,17 @@ async def async_setup_entry(
     if entry.options:
         data.update(entry.options)
 
+    entities = data.get("entities", [])
+    master = data.get("master")
+
+    if master not in entities:
+        master = entities[0] if entities else None
+
     manager.add(
         entry.entry_id,
         data.get("name", entry.title),
-        data.get("entities", []),
+        entities,
+        master,
     )
 
     vp = VirtualParallel(

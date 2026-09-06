@@ -2,17 +2,39 @@
   "config": {
     "step": {
       "user": {
-        "title": "Virtual Parallel",
-        "description": "Configure um circuito virtual.",
+        "title": "Create virtual circuit",
+        "description": "Select the entities that will be part of the parallel. All selected entities will be controlled together.",
         "data": {
-          "name": "Nome",
-          "entities": "Entidades"
+          "name": "Circuit name",
+          "entities": "Parallel entities"
+        }
+      },
+      "master": {
+        "title": "Select master entity",
+        "description": "Select the master entity. It will be used as the reference to keep the other parallel entities synchronized.",
+        "data": {
+          "master": "Master entity"
         }
       }
-    },
-    "error": {},
-    "abort": {
-      "already_configured": "Já configurado."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configure virtual circuit",
+        "description": "Select the entities that will be part of the parallel.",
+        "data": {
+          "name": "Circuit name",
+          "entities": "Parallel entities"
+        }
+      },
+      "master": {
+        "title": "Select master entity",
+        "description": "Select the master entity. It must be one of the entities selected in the previous step.",
+        "data": {
+          "master": "Master entity"
+        }
+      }
     }
   }
 }

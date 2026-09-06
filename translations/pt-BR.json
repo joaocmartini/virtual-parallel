@@ -2,17 +2,39 @@
   "config": {
     "step": {
       "user": {
-        "title": "Virtual Parallel",
-        "description": "Configure um circuito virtual.",
+        "title": "Configurar circuito virtual",
+        "description": "Selecione as entidades que farão parte do paralelo.",
         "data": {
-          "name": "Nome",
-          "entities": "Entidades"
+          "name": "Nome do circuito",
+          "entities": "Entidades do paralelo"
+        }
+      },
+      "master": {
+        "title": "Selecionar entidade mestre",
+        "description": "Selecione a entidade mestre (master). Ela deve ser uma das entidades selecionadas na etapa anterior.",
+        "data": {
+          "master": "Entidade mestre (master)"
         }
       }
-    },
-    "error": {},
-    "abort": {
-      "already_configured": "Já configurado."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Configurar circuito virtual",
+        "description": "Selecione as entidades que farão parte do paralelo.",
+        "data": {
+          "name": "Nome do circuito",
+          "entities": "Entidades do paralelo"
+        }
+      },
+      "master": {
+        "title": "Selecionar entidade mestre",
+        "description": "Selecione a entidade mestre (master). Ela deve ser uma das entidades selecionadas na etapa anterior.",
+        "data": {
+          "master": "Entidade mestre (master)"
+        }
+      }
     }
   }
 }

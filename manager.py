@@ -15,13 +15,15 @@ class Circuit:
         entry_id: str,
         name: str,
         entities: list[str],
+        master: str | None = None,
     ):
         self.entry_id = entry_id
         self.name = name
         self.entities = set(entities)
+        self.master = master if master in self.entities else None
 
     @property
-    def count(self):
+    def count(self) -> int:
         return len(self.entities)
 
     def contains(self, entity_id: str) -> bool:
@@ -33,8 +35,22 @@ class Circuit:
     def remove_entity(self, entity_id: str):
         self.entities.discard(entity_id)
 
+        if self.master == entity_id:
+            self.master = None
+
     def replace_entities(self, entities: list[str]):
         self.entities = set(entities)
+
+        if self.master not in self.entities:
+            self.master = None
+
+    def set_master(self, entity_id: str | None):
+        if entity_id is None:
+            self.master = None
+            return
+
+        if entity_id in self.entities:
+            self.master = entity_id
 
     def rename(self, name: str):
         self.name = name
@@ -44,6 +60,7 @@ class Circuit:
             "entry_id": self.entry_id,
             "name": self.name,
             "entities": sorted(self.entities),
+            "master": self.master,
         }
 
 
@@ -58,20 +75,23 @@ class CircuitManager:
         entry_id: str,
         name: str,
         entities: list[str],
+        master: str | None = None,
     ) -> Circuit:
 
         circuit = Circuit(
             entry_id,
             name,
             entities,
+            master,
         )
 
         self._circuits[entry_id] = circuit
 
         _LOGGER.info(
-            "Circuito '%s' criado (%d entidades)",
+            "Circuito %s criado (%d entidades, mestre=%s)",
             name,
             circuit.count,
+            circuit.master,
         )
 
         return circuit
@@ -81,6 +101,7 @@ class CircuitManager:
         entry_id: str,
         name: str,
         entities: list[str],
+        master: str | None = None,
     ):
 
         circuit = self.get(entry_id)
@@ -90,14 +111,17 @@ class CircuitManager:
                 entry_id,
                 name,
                 entities,
+                master,
             )
 
         circuit.rename(name)
         circuit.replace_entities(entities)
+        circuit.set_master(master)
 
         _LOGGER.info(
-            "Circuito '%s' atualizado",
+            "Circuito %s atualizado (mestre=%s)",
             name,
+            circuit.master,
         )
 
         return circuit
