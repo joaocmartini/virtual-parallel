@@ -3,9 +3,12 @@
   "name": "Virtual Parallel",
   "version": "0.0.3",
   "config_flow": true,
-  "documentation": "https://github.com",
-  "issue_tracker": "https://github.com",
+  "documentation": "https://github.com/joaocmartini/virtual-parallel",
+  "issue_tracker": "https://github.com/joaocmartini/virtual-parallel/issues",
   "requirements": [],
-  "codeowners": [],
-  "iot_class": "local_push"
+  "codeowners": [
+    "@joaocmartini"
+  ],
+  "iot_class": "local_push",
+  "integration_type": "hub"
 }
