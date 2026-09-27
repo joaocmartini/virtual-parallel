@@ -1,12 +1,12 @@
 # Virtual Parallel
 
-Virtual Parallel is a custom Home Assistant integration that allows you to create virtual parallel circuits between `switch` entities.
+Virtual Parallel is a custom Home Assistant integration that allows you to create virtual parallel circuits between `switch` and `light` entities.
 
 Entities added to the same circuit are automatically synchronized. When one entity is turned on or off, the other available entities in the circuit follow the same state.
 
 ## Features
 
-- Create virtual parallel circuits between `switch` entities
+- Create virtual parallel circuits between `switch` and `light` entities
 - Bidirectional synchronization
 - Any available entity can trigger synchronization
 - Define a master entity for each circuit
@@ -55,7 +55,7 @@ and search for Virtual Parallel.
 
 ## Configuration
 
-When adding the integration, enter the circuit name, select the `switch` entities that will participate in the circuit, and choose the master entity.
+When adding the integration, enter the circuit name, select the `switch` and `light` entities that will participate in the circuit, and choose the master entity.
 
 Existing circuits can be edited later to change the name, participating entities, or master entity.
 
@@ -68,7 +68,7 @@ This prevents a temporarily unavailable entity from being interpreted as `off` a
 ## Requirements
 
 - Home Assistant
-- Entities from the `switch` domain
+- Entities from the `switch` or `light` domains
 
 ## Version
 

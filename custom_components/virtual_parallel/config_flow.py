@@ -77,7 +77,7 @@ class VirtualParallelConfigFlow(
                         default=[],
                     ): EntitySelector(
                         EntitySelectorConfig(
-                            domain=["switch"],
+                            domain=["switch", "light"],
                             multiple=True,
                         )
                     ),
@@ -216,7 +216,7 @@ class VirtualParallelOptionsFlow(
                         default=defaults[CONF_ENTITIES],
                     ): EntitySelector(
                         EntitySelectorConfig(
-                            domain=["switch"],
+                            domain=["switch", "light"],
                             multiple=True,
                         )
                     ),
