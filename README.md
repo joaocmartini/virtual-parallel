@@ -7,73 +7,71 @@ Entities added to the same circuit are automatically synchronized. When one enti
 ## Features
 
 - Create virtual parallel circuits between `switch` and `light` entities
+- Mix `switch` and `light` entities in the same circuit
 - Bidirectional synchronization
 - Any available entity can trigger synchronization
 - Define a master entity for each circuit
-- Configure circuits through the Home Assistant interface
+- Configure circuits through the Home Assistant UI
 - Edit existing circuits
 - Ignore `unknown` and `unavailable` entities
 - Avoid unnecessary commands when an entity is already in the desired state
 
 ## How It Works
 
-Suppose you have three switches:
+Suppose you have three entities:
 
-    switch.living_room_light
-    switch.hallway_light
-    switch.wall_light
+```text
+switch.living_room_light
+switch.hallway_light
+light.wall_light
 
 You can create a circuit containing these entities.
 
 When one entity is turned on:
 
-    ON → the other available entities are turned ON
+ON → the other available entities are turned ON
 
 When one entity is turned off:
 
-    OFF → the other available entities are turned OFF
+OFF → the other available entities are turned OFF
 
 Synchronization works in both directions, allowing any available entity in the circuit to control the others.
 
-## Installation
+Installation
 
 The recommended way to install Virtual Parallel is through HACS.
 
-In Home Assistant:
-
-1. Open HACS.
-2. Go to Integrations.
-3. Search for Virtual Parallel.
-4. Click Download.
-5. Restart Home Assistant.
+Open HACS.
+Go to Integrations.
+Search for Virtual Parallel.
+Select the integration and install it.
+Restart Home Assistant.
 
 After installation, go to:
 
-Settings → Devices & services → Add integration
+Settings → Devices & services → Add Integration
 
 and search for Virtual Parallel.
 
-## Configuration
+Configuration
 
-When adding the integration, enter the circuit name, select the `switch` and `light` entities that will participate in the circuit, and choose the master entity.
+When adding the integration, enter the circuit name, select the switch and light entities that will participate in the circuit, and choose the master entity.
 
 Existing circuits can be edited later to change the name, participating entities, or master entity.
 
-## Availability Handling
+Availability Handling
 
-Entities in the `unknown` or `unavailable` state are ignored during synchronization.
+Entities in the unknown or unavailable state are ignored during synchronization.
 
-This prevents a temporarily unavailable entity from being interpreted as `off` and changing the state of the other entities.
+This prevents a temporarily unavailable entity from being interpreted as off and changing the state of the other entities.
 
-## Requirements
+Requirements
+Home Assistant
+Entities from the switch or light domains
+Version
 
-- Home Assistant
-- Entities from the `switch` or `light` domains
+0.0.4
 
-## Version
-
-0.0.3
-
-## Repository
+Repository
 
 https://github.com/joaocmartini/virtual-parallel
