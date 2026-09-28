@@ -20,58 +20,65 @@ Entities added to the same circuit are automatically synchronized. When one enti
 
 Suppose you have three entities:
 
-```text
+~~~
 switch.living_room_light
 switch.hallway_light
 light.wall_light
+~~~
 
 You can create a circuit containing these entities.
 
 When one entity is turned on:
 
+~~~
 ON → the other available entities are turned ON
+~~~
 
 When one entity is turned off:
 
+~~~
 OFF → the other available entities are turned OFF
+~~~
 
 Synchronization works in both directions, allowing any available entity in the circuit to control the others.
 
-Installation
+## Installation
 
 The recommended way to install Virtual Parallel is through HACS.
 
-Open HACS.
-Go to Integrations.
-Search for Virtual Parallel.
-Select the integration and install it.
-Restart Home Assistant.
+1. Open HACS.
+2. Go to Integrations.
+3. Search for `Virtual Parallel`.
+4. Select the integration and install it.
+5. Restart Home Assistant.
 
 After installation, go to:
 
-Settings → Devices & services → Add Integration
+**Settings → Devices & services → Add Integration**
 
-and search for Virtual Parallel.
+and search for **Virtual Parallel**.
 
-Configuration
+## Configuration
 
-When adding the integration, enter the circuit name, select the switch and light entities that will participate in the circuit, and choose the master entity.
+When adding the integration, enter the circuit name, select the `switch` and `light` entities that will participate in the circuit, and choose the master entity.
 
 Existing circuits can be edited later to change the name, participating entities, or master entity.
 
-Availability Handling
+## Availability Handling
 
-Entities in the unknown or unavailable state are ignored during synchronization.
+Entities in the `unknown` or `unavailable` state are ignored during synchronization.
 
-This prevents a temporarily unavailable entity from being interpreted as off and changing the state of the other entities.
+This prevents a temporarily unavailable entity from being interpreted as `off` and changing the state of the other entities.
 
-Requirements
-Home Assistant
-Entities from the switch or light domains
-Version
+## Requirements
+
+- Home Assistant
+- Entities from the `switch` or `light` domains
+
+## Version
 
 0.0.4
 
-Repository
+## Repository
 
 https://github.com/joaocmartini/virtual-parallel
